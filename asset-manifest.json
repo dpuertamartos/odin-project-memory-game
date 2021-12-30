@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/odin-project-memory-game/static/css/main.e487cac7.css",
+    "main.js": "/odin-project-memory-game/static/js/main.6ede26b1.js",
+    "static/media/lab-background.jpg": "/odin-project-memory-game/static/media/lab-background.b36e0fd85b85f7faa6d3.jpg",
+    "static/media/xenopus.png": "/odin-project-memory-game/static/media/xenopus.11749e28a86537f87311.png",
+    "static/media/labchimp.jpg": "/odin-project-memory-game/static/media/labchimp.8f34c5cda6fb09f336d0.jpg",
+    "static/media/humancell.jpg": "/odin-project-memory-game/static/media/humancell.8564908e1ad6557677f5.jpg",
+    "static/media/saccharomycerevisiae.jpg": "/odin-project-memory-game/static/media/saccharomycerevisiae.bec2ab2b38a8d455ee78.jpg",
+    "static/media/arabidopsis.jpg": "/odin-project-memory-game/static/media/arabidopsis.17ef57c23e8b1d2f3556.jpg",
+    "static/media/rat.jpg": "/odin-project-memory-game/static/media/rat.424d9e9c2aff799eaeaf.jpg",
+    "static/media/elegans.jpg": "/odin-project-memory-game/static/media/elegans.a2906f2bb8e68553e7df.jpg",
+    "static/media/ecoli.jpg": "/odin-project-memory-game/static/media/ecoli.ee3e75638bbe4ebf9214.jpg",
+    "index.html": "/odin-project-memory-game/index.html",
+    "main.e487cac7.css.map": "/odin-project-memory-game/static/css/main.e487cac7.css.map",
+    "main.6ede26b1.js.map": "/odin-project-memory-game/static/js/main.6ede26b1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e487cac7.css",
+    "static/js/main.6ede26b1.js"
+  ]
+}

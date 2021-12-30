@@ -1,12 +1,25 @@
 import { useState } from "react"
+import arabidopsis from "./assets/img/arabidopsis.jpg"
+import drosophila from "./assets/img/drosophila.jpg"
+import ecoli from "./assets/img/ecoli.jpg"
+import elegans from "./assets/img/elegans.jpg"
+import humancell from "./assets/img/humancell.jpg"
+import labchimp from "./assets/img/labchimp.jpg"
+import laevis from "./assets/img/laevis.jpg"
+import mice from "./assets/img/mice.jpg"
+import rat from "./assets/img/rat.jpg"
+import saccharo from "./assets/img/saccharomycerevisiae.jpg"
+import tropicalis from "./assets/img/xenopus.png"
+import zebrafish from "./assets/img/zebrafish.png"
+
 
 const initialCards = [
-  {id: 1, title: 1, clicked: "no"}, {id: 2, title: 2, clicked: "no"}, 
-  {id: 3, title: 3, clicked: "no"}, {id: 4, title: 4, clicked: "no"}, 
-  {id: 5, title: 5, clicked: "no"}, {id: 6, title: 6, clicked: "no"}, 
-  {id: 7, title: 7, clicked: "no"}, {id: 8, title: 8, clicked: "no"}, 
-  {id: 9, title: 9, clicked: "no"}, {id: 10, title: 10, clicked: "no"}, 
-  {id: 11, title: 11, clicked: "no"}, {id: 12, title: 12, clicked: "no"}
+  {id: 1, title: 1, clicked: "no", img: arabidopsis}, {id: 2, title: 2, clicked: "no", img: drosophila}, 
+  {id: 3, title: 3, clicked: "no", img: ecoli}, {id: 4, title: 4, clicked: "no", img: elegans}, 
+  {id: 5, title: 5, clicked: "no", img: humancell}, {id: 6, title: 6, clicked: "no", img: labchimp}, 
+  {id: 7, title: 7, clicked: "no", img: laevis}, {id: 8, title: 8, clicked: "no", img: mice}, 
+  {id: 9, title: 9, clicked: "no", img: rat}, {id: 10, title: 10, clicked: "no", img: saccharo}, 
+  {id: 11, title: 11, clicked: "no", img: tropicalis}, {id: 12, title: 12, clicked: "no", img: zebrafish}
 ]
 
 const Title = () => {
@@ -57,7 +70,12 @@ const Card = ({cardToDisplay, cards, setCards, currentScore, setScore, maxScore,
     }
   
   }
-  return <div onClick={()=>cardFunction(cardToDisplay,setScore)} className="col">{cardToDisplay.title}</div>
+  return(
+  <div onClick={()=>cardFunction(cardToDisplay,setScore)} className="col">
+    {cardToDisplay.title}
+    <img className="img-fluid" src={cardToDisplay.img} alt={cardToDisplay.title}></img>
+  </div>
+  )
 
 }
 

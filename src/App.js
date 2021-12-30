@@ -1,5 +1,14 @@
 import { useState } from "react"
 
+const initialCards = [
+  {id: 1, title: 1, clicked: "no"}, {id: 2, title: 2, clicked: "no"}, 
+  {id: 3, title: 3, clicked: "no"}, {id: 4, title: 4, clicked: "no"}, 
+  {id: 5, title: 5, clicked: "no"}, {id: 6, title: 6, clicked: "no"}, 
+  {id: 7, title: 7, clicked: "no"}, {id: 8, title: 8, clicked: "no"}, 
+  {id: 9, title: 9, clicked: "no"}, {id: 10, title: 10, clicked: "no"}, 
+  {id: 11, title: 11, clicked: "no"}, {id: 12, title: 12, clicked: "no"}
+]
+
 const Title = () => {
   return (
     <div className="appTitle">
@@ -11,15 +20,8 @@ const Title = () => {
   )
 }
 
-const CardDisplayer = ({currentScore, setScore}) => {
-  const cards = [
-    {id: 1, title: 1, clicked: "no"}, {id: 2, title: 2, clicked: "no"}, 
-    {id: 3, title: 3, clicked: "no"}, {id: 4, title: 4, clicked: "no"}, 
-    {id: 5, title: 5, clicked: "no"}, {id: 6, title: 6, clicked: "no"}, 
-    {id: 7, title: 7, clicked: "no"}, {id: 8, title: 8, clicked: "no"}, 
-    {id: 9, title: 9, clicked: "no"}, {id: 10, title: 10, clicked: "no"}, 
-    {id: 11, title: 11, clicked: "no"}, {id: 12, title: 12, clicked: "no"}
-  ]
+const CardDisplayer = ({currentScore, setScore, maxScore, setMaxScore}) => {
+  const [cards, setCards] = useState([...initialCards])
   
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -34,17 +36,26 @@ const CardDisplayer = ({currentScore, setScore}) => {
   return (
     <div className="container">
       <div className="row row-cols-3">
-        {shuffleArray(cards).map(card=><Card key={card.title} cardToDisplay={card} currentScore={currentScore} setScore={setScore}/>)}
+        {shuffleArray(cards).map(card=><Card key={card.title} cardToDisplay={card} cards={cards} setCards={setCards}
+        currentScore={currentScore} setScore={setScore} maxScore={maxScore} setMaxScore={setMaxScore}/>)}
       </div>
     </div>
   )
 }
 
-const Card = ({cardToDisplay, currentScore, setScore}) => {
+const Card = ({cardToDisplay, cards, setCards, currentScore, setScore, maxScore, setMaxScore}) => {
   const cardFunction = (card) =>{
-    card.clicked="yes"
-    console.log(card)
-    setScore(currentScore+1)
+    console.log("is card clicked?", card.clicked)
+    if(card.clicked==="no"){
+      setCards(cards.map(card=>card.id===cardToDisplay.id? {...card, clicked: "yes"}: card))
+      setScore(currentScore+1)
+    }
+    else{
+      setCards([...initialCards])
+      if(currentScore>maxScore){setMaxScore(currentScore)}
+      setScore(0)
+    }
+  
   }
   return <div onClick={()=>cardFunction(cardToDisplay,setScore)} className="col">{cardToDisplay.title}</div>
 
@@ -74,7 +85,8 @@ const App = () => {
         </div>
       </div>
       <div className="row">
-        <CardDisplayer currentScore={currentScore} setScore={setCurrentScore}/>
+        <CardDisplayer currentScore={currentScore} setScore={setCurrentScore}
+        maxScore={maxScore} setMaxScore={setMaxScore}/>
       </div>
       <div>Copyright</div>
     </div>

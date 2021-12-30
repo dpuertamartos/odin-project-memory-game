@@ -12,14 +12,15 @@ import saccharo from "./assets/img/saccharomycerevisiae.jpg"
 import tropicalis from "./assets/img/xenopus.png"
 import zebrafish from "./assets/img/zebrafish.png"
 
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 const initialCards = [
-  {id: 1, title: 1, clicked: "no", img: arabidopsis}, {id: 2, title: 2, clicked: "no", img: drosophila}, 
-  {id: 3, title: 3, clicked: "no", img: ecoli}, {id: 4, title: 4, clicked: "no", img: elegans}, 
-  {id: 5, title: 5, clicked: "no", img: humancell}, {id: 6, title: 6, clicked: "no", img: labchimp}, 
-  {id: 7, title: 7, clicked: "no", img: laevis}, {id: 8, title: 8, clicked: "no", img: mice}, 
-  {id: 9, title: 9, clicked: "no", img: rat}, {id: 10, title: 10, clicked: "no", img: saccharo}, 
-  {id: 11, title: 11, clicked: "no", img: tropicalis}, {id: 12, title: 12, clicked: "no", img: zebrafish}
+  {id: 1, title: "arabidopsis", name:"Arabidopsis thaliana", clicked: "no", img: arabidopsis}, {id: 2, title: "fly", name:"Drosophila melanogaster",clicked: "no", img: drosophila}, 
+  {id: 3, title: "bacteria", name:"Escherichia coli",clicked: "no", img: ecoli}, {id: 4, title: "worm", name:"Caenorhabditis elegans",clicked: "no", img: elegans}, 
+  {id: 5, title: "human cells", name:"Homo sapiens",clicked: "no", img: humancell}, {id: 6, title: "chimpanzee", name:"Pan troglodytes",clicked: "no", img: labchimp}, 
+  {id: 7, title: "frog", name:"Xenopus laevis",clicked: "no", img: laevis}, {id: 8, title: "mouse", name:"Mus musculus",clicked: "no", img: mice}, 
+  {id: 9, title: "rat", name:"Rattus norvegicus domestica",clicked: "no", img: rat}, {id: 10, title: "yeast", name:"Saccharomyces cerevisiae",clicked: "no", img: saccharo}, 
+  {id: 11, title: "small frog", name:"Xenopus tropicalis",clicked: "no", img: tropicalis}, {id: 12, title: "Zebrafish", name:"Danio rerio",clicked: "no", img: zebrafish}
 ]
 
 const Title = () => {
@@ -48,7 +49,7 @@ const CardDisplayer = ({currentScore, setScore, maxScore, setMaxScore}) => {
 
   return (
     <div className="container">
-      <div className="row row-cols-3">
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xl-6 justify-content-center">
         {shuffleArray(cards).map(card=><Card key={card.title} cardToDisplay={card} cards={cards} setCards={setCards}
         currentScore={currentScore} setScore={setScore} maxScore={maxScore} setMaxScore={setMaxScore}/>)}
       </div>
@@ -57,7 +58,9 @@ const CardDisplayer = ({currentScore, setScore, maxScore, setMaxScore}) => {
 }
 
 const Card = ({cardToDisplay, cards, setCards, currentScore, setScore, maxScore, setMaxScore}) => {
-  const cardFunction = (card) =>{
+  const cardFunction = async (card) =>{
+    await delay(300)
+
     console.log("is card clicked?", card.clicked)
     if(card.clicked==="no"){
       setCards(cards.map(card=>card.id===cardToDisplay.id? {...card, clicked: "yes"}: card))
@@ -71,10 +74,16 @@ const Card = ({cardToDisplay, cards, setCards, currentScore, setScore, maxScore,
   
   }
   return(
-  <div onClick={()=>cardFunction(cardToDisplay,setScore)} className="col">
-    {cardToDisplay.title}
-    <img className="img-fluid" src={cardToDisplay.img} alt={cardToDisplay.title}></img>
-  </div>
+    <div onClick={()=>cardFunction(cardToDisplay,setScore)} className="col item align-self-center">
+      <div className="card" style={{width: "18rem"}}>
+      <img className="card-img-top images" src={cardToDisplay.img} alt={cardToDisplay.title}></img>
+        <div className="card-body">
+          <h5 className="card-title">{cardToDisplay.title}</h5>
+          <p className="card-text">{cardToDisplay.name}</p>
+          
+        </div>
+      </div>  
+    </div>
   )
 
 }
@@ -93,12 +102,12 @@ const App = () => {
   const [maxScore, setMaxScore] = useState(0)
 
   return (
-    <div className="container mainContainer">
-      <div className="row">
+    <div className="container-fluid mainContainer hero-image">
+      <div className="row panel">
         <div className="col">
           <Title />
         </div>
-        <div className="col">
+        <div className="col score">
           <ScoreBoard currentScore={currentScore} maxScore={maxScore}/>
         </div>
       </div>
@@ -106,7 +115,6 @@ const App = () => {
         <CardDisplayer currentScore={currentScore} setScore={setCurrentScore}
         maxScore={maxScore} setMaxScore={setMaxScore}/>
       </div>
-      <div>Copyright</div>
     </div>
   );
 }

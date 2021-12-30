@@ -1,0 +1,90 @@
+.hero-image{
+    background-image: url("./assets/img/lab-background.jpg");
+    background-color: #cccccc;
+    height: 100%;
+    min-height: 1100px;
+    padding: 3% 0% 1.5%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.card-text{
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.panel{
+    padding: 0.5% 15% 0.5%;
+    background-color: #2B2C31;
+    margin: 0% 0% 3%;
+    border-radius: 20px;
+    color: #C4CBD5;
+    transition: background-color 1000ms ease-in-out;
+}
+
+.panel:hover{
+    background-color: white;
+    color: black;
+}
+
+.score{
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.cr{
+    margin: 1% 0 1%;
+    text-align: center;
+    color: #1C292E;
+    font-size: 1.5rem;
+}
+
+.github:hover{
+    border-radius: 110px;
+    background-color: #1C292E;
+}
+.github{
+    width: 50px;
+}
+
+.images{
+    height: 225px;
+}
+
+.item{
+    margin: 0 0 3% 0%;
+}
+
+@media only screen and (max-width: 766px) {
+    .item{
+        margin: 0 0 3% 15%;
+    }
+    .hero-image{
+        background-image: none;
+        background-color: whitesmoke;
+    }
+    .card{
+        transition: transform 300ms ease-in-out;
+
+    }
+  }
+
+.card{
+    transition: transform 600ms ease-in-out;
+}
+
+.card:hover{
+    background-color:#1C292E;
+    color: whitesmoke;
+    border-width: 5px;
+    border-radius: 10px;
+    transform: translate(0px, -20px) rotate(5deg);
+
+}
+    
+
+
+
+
